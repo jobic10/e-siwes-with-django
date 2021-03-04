@@ -1,4 +1,5 @@
 from django.db import models
+from django.dispatch import receiver
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
@@ -35,6 +36,7 @@ class CustomUser(AbstractUser):
     last_name = None
     username = None  # Removed username, using email instead
     email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=11, unique=True)
     user_type = models.CharField(default=1, choices=USER_TYPE, max_length=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -59,8 +61,6 @@ class Company(models.Model):
 class Student(models.Model):
     fullname = models.CharField(max_length=70)
     regno = models.CharField(max_length=10, unique=True)
-    phone = models.CharField(max_length=11)
-    password = models.CharField(max_length=64)
     picture = models.ImageField(upload_to="students/")
     start_date = models.DateField(null=True)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
@@ -77,3 +77,24 @@ class Logbook(models.Model):
     week = models.IntegerField()
     report = models.TextField()
     remark = models.CharField(max_length=500)
+
+
+# @receiver(post_save, sender=CustomUser)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         if instance.user_type == 1:
+#             Admin.objects.create(admin=instance)
+#         if instance.user_type == 2:
+#             Company.objects.create(admin=instance)
+#         if instance.user_type == 3:
+#             Student.objects.create(admin=instance)
+
+
+# @receiver(post_save, sender=CustomUser)
+# def save_user_profile(sender, instance, **kwargs):
+#     if instance.user_type == 1:
+#         instance.admin.save()
+#     if instance.user_type == 2:
+#         instance.staff.save()
+#     if instance.user_type == 3:
+#         instance.student.save()
