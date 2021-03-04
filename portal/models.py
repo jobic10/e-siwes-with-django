@@ -74,3 +74,6 @@ class FinalRemark(models.Model):
 
 class Logbook(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    week = models.IntegerField()
+    report = models.TextField()
+    remark = models.CharField(max_length=500)
