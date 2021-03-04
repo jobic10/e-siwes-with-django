@@ -1,4 +1,4 @@
-"""e_siwes URL Configuration
+"""student_management_system URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -13,14 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-from django.conf.urls.static import static
-from . import settings
+
+from main_app.EditResultView import EditResultView
+
+from . import company_views, admin_views, student_views, views
 
 urlpatterns = [
-    path("", include('portal.urls')),
-    path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    # * General
+    path("", views.login_page, name='login_page'),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # * Admin
+
+
+    # * Company
+
+
+
+    # * Student
+
+
+]
