@@ -63,7 +63,7 @@ class Student(models.Model):
     password = models.CharField(max_length=64)
     picture = models.ImageField(upload_to="students/")
     start_date = models.DateField(null=True)
-    company = models.ForeignKey(Company, on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
 
