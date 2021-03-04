@@ -31,11 +31,11 @@ class CustomUserManager(UserManager):
 class CustomUser(AbstractUser):
     USER_TYPE = ((1, "Admin"), (2, "Company"), (3, "Student"))
     GENDER = [("M", "Male"), ("F", "Female")]
-
+    first_name = None
+    last_name = None
     username = None  # Removed username, using email instead
     email = models.EmailField(unique=True)
     user_type = models.CharField(default=1, choices=USER_TYPE, max_length=1)
-    gender = models.CharField(max_length=1, choices=GENDER)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     USERNAME_FIELD = "email"
@@ -43,7 +43,7 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return self.last_name + ", " + self.first_name
+        return self.email
 
 
 class Admin(models.Model):
