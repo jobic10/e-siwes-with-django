@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.urls import path
 
-from main_app.EditResultView import EditResultView
 
 from . import company_views, admin_views, student_views, views
 
