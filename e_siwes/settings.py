@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
+    'ckeditor_uploader',
     'portal.apps.PortalConfig'
 ]
 
@@ -143,3 +144,6 @@ EMAIL_PORT = 587
 # EMAIL_HOST_USER = os.environ.get('EMAIL_ADDRESS')
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "/logbook/uploads/"
