@@ -22,6 +22,9 @@ urlpatterns = [
 
     path("company/edit/<int:company_id>",
          admin_views.edit_company, name='edit_company'),
+
+    path("company/delete/<int:company_id>",
+         admin_views.delete_company, name='delete_company'),
     # * Company
     path("company/home/", company_views.company_home, name='company_home'),
 
