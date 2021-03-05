@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 
@@ -75,7 +76,7 @@ class FinalRemark(models.Model):
 class Logbook(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     week = models.IntegerField()
-    report = models.TextField()
+    report = RichTextUploadingField()
     remark = models.CharField(max_length=500)
 
 
@@ -93,6 +94,7 @@ class Logbook(models.Model):
 # @receiver(post_save, sender=CustomUser)
 # def save_user_profile(sender, instance, **kwargs):
 #     if instance.user_type == 1:
+#         print("Hmm")
 #         instance.admin.save()
 #     if instance.user_type == 2:
 #         instance.staff.save()

@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Company, Student, Logbook, FinalRemark, CustomUser
 from .forms import *
 from django.contrib import messages
-
+from django.contrib.auth import update_session_auth_hash
 # Create your views here.
 
 
@@ -51,15 +51,19 @@ def check_email_availability(request):
 
 def admin_view_profile(request):
     admin = get_object_or_404(Admin, admin=request.user)
-    form = AdminForm(request.POST or None, request.FILES or None,
-                     instance=admin)
+    form = CustomUserForm(
+        request.POST or None, request.FILES or None, instance=admin.admin)
     context = {'form': form,
                'page_title': 'View/Edit Profile'
                }
+    print(str(admin.admin.__dict__))
     if request.method == 'POST':
         try:
             if form.is_valid():
                 form.save()
+                update_session_auth_hash(request, request.user)
+
+                # adminForm.save()
                 messages.success(request, "Profile Updated!")
                 return redirect(reverse('admin_view_profile'))
             else:

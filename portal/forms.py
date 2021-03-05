@@ -14,6 +14,7 @@ class FormSettings(forms.ModelForm):
 
 class CustomUserForm(FormSettings):
     email = forms.EmailField(required=True)
+    # email = forms.EmailField(required=True)
     password = forms.CharField(widget=forms.PasswordInput)
     phone = forms.CharField(required=True, widget=forms.TextInput(
         attrs={'size': 11, 'maxlength': 11}))
@@ -24,9 +25,8 @@ class CustomUserForm(FormSettings):
 
     def __init__(self, *args, **kwargs):
         super(CustomUserForm, self).__init__(*args, **kwargs)
-
         if kwargs.get('instance'):
-            instance = kwargs.get('instance').admin.__dict__
+            instance = kwargs.get('instance').__dict__
             self.fields['password'].required = False
             for field in CustomUserForm.Meta.fields:
                 self.fields[field].initial = instance.get(field)
@@ -42,7 +42,7 @@ class CustomUserForm(FormSettings):
                     "The given email is already registered")
         else:  # Update
             dbEmail = self.Meta.model.objects.get(
-                id=self.instance.pk).admin.email.lower()
+                id=self.instance.pk).email.lower()
             if dbEmail != formEmail:  # There has been changes
                 if CustomUser.objects.filter(email=formEmail).exists():
                     raise forms.ValidationError(
@@ -60,7 +60,7 @@ class CustomUserForm(FormSettings):
                     "The given phone number is already registered")
         else:  # Update
             dbPhone = self.Meta.model.objects.get(
-                id=self.instance.pk).admin.phone.lower()
+                id=self.instance.pk).phone.lower()
             if dbPhone != formPhone:  # There has been changes
                 if CustomUser.objects.filter(phone=formPhone).exists():
                     raise forms.ValidationError(
@@ -69,16 +69,14 @@ class CustomUserForm(FormSettings):
         return formPhone
 
     def clean_password(self):
-        # Check that the two password entries match
-        password = self.cleaned_data.get("password")
-        return make_password(password)
+        password = self.cleaned_data.get("password", None)
+        if self.instance.pk is not None:
+            if not password:
+                print("EMPTY DAN => " + self.instance.password)
+                # return None
+                return self.instance.password
 
-    # def save(self, commit=True):
-    #     user = super().save(commit=False)
-    #     user.set_password(self.cleaned_data["password1"])
-    #     if commit:
-    #         user.save()
-    #     return user
+        return make_password(password)
 
     class Meta:
         model = CustomUser
@@ -95,10 +93,19 @@ class StudentForm(CustomUserForm):
             ['fullname', 'regno', 'picture']
 
 
-class AdminForm(CustomUserForm):
+class LogForm(FormSettings):
     def __init__(self, *args, **kwargs):
-        super(AdminForm, self).__init__(*args, **kwargs)
+        super(LogForm, self).__init__(*args, **kwargs)
 
-    class Meta(CustomUserForm.Meta):
-        model = Admin
-        fields = CustomUserForm.Meta.fields
+    class Meta:
+        model = Logbook
+        exclude = ['remark']
+
+
+class StudentEditForm(FormSettings):
+    def __init__(self, *args, **kwargs):
+        super(StudentEditForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Student
+        fields = ['fullname', 'regno', 'picture']

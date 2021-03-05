@@ -132,6 +132,8 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+MEDIA_ROOT = 'media'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'portal.CustomUser'
 AUTHENTICATION_BACKENDS = ['portal.email_backend.EmailBackend']
@@ -149,4 +151,5 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = "/logbook/uploads/"
+CKEDITOR_UPLOAD_PATH = "../media/uploads/"
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
