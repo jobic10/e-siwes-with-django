@@ -200,4 +200,4 @@ def delete_company(request, company_id):
 
         messages.success(request, "Company has been deleted.")
 
-    return manage_company(request)
+    return redirect(reverse('manage_company'))

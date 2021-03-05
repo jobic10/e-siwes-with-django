@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # My Middleware
+    'portal.middleware.LoginCheckMiddleWare',
 ]
 
 ROOT_URLCONF = 'e_siwes.urls'
