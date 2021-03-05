@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 
 
 def company_home(request):
-    me = get_object_or_404(Staff, admin=request.user)
+    me = get_object_or_404(Company, admin=request.user)
     total_students = Student.objects.filter(company=me).count()
     context = {
         'page_title': 'Industrial-Based (Company) Dashboard',
