@@ -27,7 +27,8 @@ urlpatterns = [
          admin_views.delete_company, name='delete_company'),
     # * Company
     path("company/home/", company_views.company_home, name='company_home'),
-
+    path("company_view_profile", company_views.company_view_profile,
+         name='company_view_profile'),
     # * Student
     path("student/home/", student_views.student_home, name='student_home'),
 
