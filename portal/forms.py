@@ -90,7 +90,7 @@ class StudentForm(CustomUserForm):
     class Meta(CustomUserForm.Meta):
         model = Student
         fields = CustomUserForm.Meta.fields + \
-            ['fullname', 'regno', 'picture']
+            ['fullname', 'regno', 'picture', 'company']
 
 
 class LogForm(FormSettings):
@@ -108,7 +108,7 @@ class StudentEditForm(FormSettings):
 
     class Meta:
         model = Student
-        fields = ['fullname', 'regno', 'picture']
+        fields = ['fullname', 'regno', 'picture', 'company']
 
 
 class CompanyForm(FormSettings):

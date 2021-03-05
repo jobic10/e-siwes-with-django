@@ -179,3 +179,12 @@ def edit_company(request, company_id):
             messages.error(request, "Please Fill Form Properly!")
     else:
         return render(request, "admin_template/edit_company_template.html", context)
+
+
+def delete_company(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    # Check if any student is assigned to this company
+    exist = Student.objects.filter(company=company).count()
+    if exist > 0:
+        messages.error(request, "Sorry, there exists " + str(exist) +
+                       " students assigned to this Company. What would you like to do about this ? <hr/>Perhaps, move the students to another Company.")
