@@ -14,7 +14,14 @@ urlpatterns = [
          name="check_email_availability"),
     path("admin_view_profile", admin_views.admin_view_profile,
          name='admin_view_profile'),
+    path("student/manage/", admin_views.manage_student, name='manage_student'),
+    path("student/edit/<int:student_id>",
+         admin_views.edit_student, name='edit_student'),
+    path("company/add", admin_views.add_company, name='add_company'),
+    path("company/manage/", admin_views.manage_company, name='manage_company'),
 
+    path("company/edit/<int:company_id>",
+         admin_views.edit_company, name='edit_company'),
     # * Company
     path("company/home/", company_views.company_home, name='company_home'),
 

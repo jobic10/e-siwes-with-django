@@ -109,3 +109,12 @@ class StudentEditForm(FormSettings):
     class Meta:
         model = Student
         fields = ['fullname', 'regno', 'picture']
+
+
+class CompanyForm(FormSettings):
+    def __init__(self, *args, **kwargs):
+        super(CompanyForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Company
+        fields = ['name', 'address']
