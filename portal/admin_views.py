@@ -113,7 +113,6 @@ def admin_view_profile(request):
     context = {'form': form,
                'page_title': 'View/Edit Profile'
                }
-    print(str(admin.admin.__dict__))
     if request.method == 'POST':
         try:
             if form.is_valid():
