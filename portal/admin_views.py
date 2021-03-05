@@ -182,9 +182,22 @@ def edit_company(request, company_id):
 
 
 def delete_company(request, company_id):
+    companies = CustomUser.objects.filter(user_type=2)
+    context = {
+        'companies': companies,
+        'page_title': 'Manage Companies'
+    }
     company = get_object_or_404(Company, id=company_id)
+    admin = company.admin
     # Check if any student is assigned to this company
     exist = Student.objects.filter(company=company).count()
     if exist > 0:
         messages.error(request, "Sorry, there exists " + str(exist) +
-                       " students assigned to this Company. What would you like to do about this ? <hr/>Perhaps, move the students to another Company.")
+                       " students assigned to this Company. What would you like to do about this ?")
+    else:
+        admin.delete()
+        company.delete()  # Delete Company and Delete User
+
+        messages.success(request, "Company has been deleted.")
+
+    return manage_company(request)

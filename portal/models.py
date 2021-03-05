@@ -58,6 +58,9 @@ class Company(models.Model):
     address = models.CharField(max_length=150)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name + " - " + self.address[:20]
+
 
 class Student(models.Model):
     fullname = models.CharField(max_length=70)
