@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, reverse
 from .models import *
 from .forms import *
@@ -8,7 +9,10 @@ from django.contrib.auth import update_session_auth_hash
 
 def student_home(request):
     student = get_object_or_404(Student, admin=request.user)
-    context = {}
+    context = {
+        'page_title': 'Dashboard'
+
+    }
     return render(request, 'student_template/home_content.html', context)
 
 
@@ -36,15 +40,84 @@ def student_view_profile(request):
     return render(request, "student_template/student_view_profile.html", context)
 
 
+def get_weeks_from_today(date):
+    pass
+
+
 def add_new_logbook(request):
-    form = LogForm(request.POST or None)
-    context = {'form': form, 'page_title': 'New Weekly Report'}
+    status = 'New'
+    student = get_object_or_404(Student, admin=request.user)
+    logbook_count = Logbook.objects.filter(student=student).count()
+    if logbook_count == 0:  # Empty
+        form = LogForm(request.POST or None)
+    else:  # Records Exist
+        student_start_date = student.start_date
+        date = datetime.datetime.today().strftime('%Y-%m-%d')
+        date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+        days = abs(student_start_date - date).days
+        week = days // 7
+
+        # First, we check if the week difference is exactly this week
+        # If it is, show the recent logbook for update...
+        # If and only If it has not been commented on by the supervisor
+        if logbook_count == 1:
+            instance = Logbook.objects.get(student=student)
+            if instance.remark is None:
+                form = LogForm(request.POST or None, instance=instance)
+                status = 'Update'
+            else:
+                messages.success(
+                    request, "Your industrial-based supervisor has commented/signed on this week's report. You can not modify this anymore.")
+                return redirect(reverse('view_logbook'))
+        else:
+            # Check if week is not this week, if not show new form
+            instance = Logbook.objects.filter(
+                student=student).order_by('-week')[0]
+            if week > instance.week:  # Show new form
+                form = LogForm(request.POST or None)
+            else:
+                if instance.remark is None:
+                    form = LogForm(request.POST or None, instance=instance)
+                    print("**" * 10)
+                else:
+                    status = 'Update'
+                    messages.error(
+                        request, "Your industrial-based supervisor has commented/signed on the report from this week. You can not modify this anymore. Kindly take a look at the comment")
+                    return redirect(reverse('view_logbook'))
+    context = {'form': form,
+               'page_title': status + ' Weekly Report'}
     if request.method == 'POST':
         if form.is_valid():
+            if logbook_count < 1:  # Does not exist, first week
+                week = 1
+                if not datetime.datetime.today().isoweekday == 1:  # Today is not Monday, so get the last Monday
+                    # Get last monday from today
+                    today = datetime.datetime.today()
+                    date = today + \
+                        datetime.timedelta(
+                            days=-today.weekday(), weeks=0)  # I have no clue how this code works. But guess what? It works
+                    # Additionally, update the start_date in Student
+                monday = date
+                student.start_date = monday
+                student.save()
+            else:
+                # Fetch the distance (in weeks) from the start_date to current date
+                student_start_date = student.start_date
+                days = abs(student_start_date - date).days
+                week = days // 7
+
+                print("The Difference = " + str(week))
             logbook = form.save(commit=False)
+            logbook.student = student
+            logbook.week = week
             # Figure out the Logbook Week
             logbook.save()
             messages.success(request, "Successfully Added")
         else:
             messages.error(request, "Invalid Data Provided ")
+    return render(request, 'admin_template/add_logbook_template.html', context)
+
+
+def view_logbook(request):
+    context = {'page_title': 'View Logbook'}
     return render(request, 'admin_template/add_logbook_template.html', context)
