@@ -91,3 +91,34 @@ def update_logbook(request, logbook_id):
     logbook.save()
     messages.success(request, "Logbook Remarks Saved")
     return redirect(reverse('company_view_logbook', args=[logbook_id]))
+
+
+def mass_remark(request):
+    students = Student.objects.filter(company=request.user.company)
+    context = {'students': students, 'page_title': 'Mass Remark'}
+    if request.method == 'POST':
+        remark = request.POST.get('remark')
+        if len(remark) < 4:
+            messages.error(request, "Please fill form properly!")
+            return redirect(reverse('mass_remark'))
+        print(request.POST)
+        if request.POST.get('all'):
+            # All Outstanding From This Company
+            print("106**************************8")
+            Logbook.objects.filter(
+                student__company=request.user.company, remark=None).update(remark=remark)
+            print(Logbook.objects.filter(
+                student__company=request.user.company, remark=None))
+        else:
+            # Loop
+            students = request.POST.getlist('students')
+            # Remove empty elements
+            students = [x for x in students if x.strip()]
+            Logbook.objects.filter(
+                student__pk__in=students, remark=None).update(remark=remark)
+            for student in students:
+                print("I am " + str(student))
+            print("116**************************")
+
+        messages.success(request, "Changes Updated!")
+    return render(request, "company_template/mass_remark.html", context)

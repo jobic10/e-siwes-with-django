@@ -30,6 +30,7 @@ urlpatterns = [
 
 
 
+
     # * Company
     path("company/home/", company_views.company_home, name='company_home'),
     path("company_view_profile", company_views.company_view_profile,
@@ -42,6 +43,7 @@ urlpatterns = [
          name='company_students'),
     path("company/logbook/<int:logbook_id>/update/",
          company_views.update_logbook, name='update_logbook'),
+    path('company/mass/remark', company_views.mass_remark, name='mass_remark'),
 
 
 
