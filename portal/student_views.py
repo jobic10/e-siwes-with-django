@@ -34,3 +34,17 @@ def student_view_profile(request):
             messages.error(
                 request, "Error Occurred While Updating Profile " + str(e))
     return render(request, "student_template/student_view_profile.html", context)
+
+
+def add_new_logbook(request):
+    form = LogForm(request.POST or None)
+    context = {'form': form, 'page_title': 'New Weekly Report'}
+    if request.method == 'POST':
+        if form.is_valid():
+            logbook = form.save(commit=False)
+            # Figure out the Logbook Week
+            logbook.save()
+            messages.success(request, "Successfully Added")
+        else:
+            messages.error(request, "Invalid Data Provided ")
+    return render(request, 'admin_template/add_logbook_template.html', context)

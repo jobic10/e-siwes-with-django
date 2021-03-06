@@ -80,7 +80,7 @@ class Logbook(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     week = models.IntegerField()
     report = RichTextUploadingField()
-    remark = models.CharField(max_length=500)
+    remark = models.CharField(max_length=500, null=True)
 
 
 # @receiver(post_save, sender=CustomUser)

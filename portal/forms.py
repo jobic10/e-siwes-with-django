@@ -93,13 +93,13 @@ class StudentForm(CustomUserForm):
             ['fullname', 'regno', 'picture', 'company']
 
 
-class LogForm(FormSettings):
+class LogForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(LogForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = Logbook
-        exclude = ['remark']
+        fields = ['report']
 
 
 class StudentEditForm(FormSettings):
