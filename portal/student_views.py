@@ -50,6 +50,7 @@ def add_new_logbook(request):
     logbook_count = Logbook.objects.filter(student=student).count()
     if logbook_count == 0:  # Empty
         form = LogForm(request.POST or None)
+        week = 0
     else:  # Records Exist
         student_start_date = student.start_date
         date = datetime.datetime.today().strftime('%Y-%m-%d')

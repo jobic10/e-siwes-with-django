@@ -104,7 +104,6 @@ def mass_remark(request):
         print(request.POST)
         if request.POST.get('all'):
             # All Outstanding From This Company
-            print("106**************************8")
             Logbook.objects.filter(
                 student__company=request.user.company, remark=None).update(remark=remark)
             print(Logbook.objects.filter(
@@ -118,7 +117,6 @@ def mass_remark(request):
                 student__pk__in=students, remark=None).update(remark=remark)
             for student in students:
                 print("I am " + str(student))
-            print("116**************************")
 
         messages.success(request, "Changes Updated!")
     return render(request, "company_template/mass_remark.html", context)
