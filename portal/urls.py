@@ -53,7 +53,9 @@ urlpatterns = [
     path("student_view_profile", student_views.student_view_profile,
          name='student_view_profile'),
     path("logbook/new", student_views.add_new_logbook, name="add_new_logbook"),
-    path("logbook/view", student_views.view_logbook, name="view_logbook"),
-
+    path("student/logbook/<int:logbook_id>", student_views.view_logbook,
+         name='view_this_logbook'),
+    path("student/logbook", student_views.view_my_logbook,
+         name='my_logbook'),
 
 ]

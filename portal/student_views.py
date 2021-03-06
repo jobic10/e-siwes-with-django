@@ -117,6 +117,24 @@ def add_new_logbook(request):
     return render(request, 'admin_template/add_logbook_template.html', context)
 
 
-def view_logbook(request):
-    context = {'page_title': 'View Logbook'}
-    return render(request, 'admin_template/add_logbook_template.html', context)
+def view_logbook(request, logbook_id):
+    me = request.user
+    logbook = get_object_or_404(Logbook, id=logbook_id)
+    if logbook.student != me.student:
+        messages.error(request, "Sorry, you do not have access to this")
+        return redirect(reverse('company_students'))
+    context = {
+        'logbook': logbook,
+        'page_title': 'View Logbook',
+    }
+    return render(request, "student_template/view_logbook.html", context)
+
+
+def view_my_logbook(request):
+    me = request.user
+    logbooks = Logbook.objects.filter(student=me.student).order_by('-week')
+    context = {
+        'logbooks': logbooks,
+        'page_title': 'View Logbook',
+    }
+    return render(request, "student_template/view_student_logbook.html", context)
