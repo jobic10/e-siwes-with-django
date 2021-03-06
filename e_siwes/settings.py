@@ -177,3 +177,6 @@ CKEDITOR_CONFIGS = {
         'width': '100%'
     },
 }
+
+
+SMS_TOKEN = os.environ.get('SMS_TOKEN')
