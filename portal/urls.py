@@ -34,10 +34,14 @@ urlpatterns = [
     path("company/home/", company_views.company_home, name='company_home'),
     path("company_view_profile", company_views.company_view_profile,
          name='company_view_profile'),
-    path("company_view_logbook", company_views.view_logbook,
+    path("company/logbook/<int:logbook_id>", company_views.view_logbook,
          name='company_view_logbook'),
-
-
+    path("company/student/<int:student_id>/logbook", company_views.view_student_logbook,
+         name='student_logbook'),
+    path("company/students/", company_views.view_students,
+         name='company_students'),
+    path("company/logbook/<int:logbook_id>/update/",
+         company_views.update_logbook, name='update_logbook'),
 
 
 
@@ -48,5 +52,6 @@ urlpatterns = [
          name='student_view_profile'),
     path("logbook/new", student_views.add_new_logbook, name="add_new_logbook"),
     path("logbook/view", student_views.view_logbook, name="view_logbook"),
+
 
 ]
