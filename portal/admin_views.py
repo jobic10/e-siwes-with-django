@@ -5,7 +5,7 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.core.mail import send_mail
-import requests
+import requests as r
 from django.template.loader import render_to_string
 from django.conf import settings
 # Create your views here.
@@ -175,6 +175,30 @@ def add_company(request):
             company.admin = admin
             company.save()
             messages.success(request, "Successfully Added")
+            # Send mail
+            data = {'msg': "Welcome, Please use this password to login your account <b>" +
+                    str(request.POST.get('password'))+"</b> "}
+            msg_html = render_to_string(
+                'email/email.html', data)
+            msg_plain = render_to_string(
+                'email/email.txt', data)
+            message = "Hello There! Your SIWES account has been created. Further details are in your mail."
+            to = request.POST.get('phone')
+
+            full_url = settings.SMS_BASE_URL + 'message=' + message + '&to=' + to + \
+                '&sender=' + settings.SMS_SENDER + '&type=0&routing=3&token=' + settings.SMS_TOKEN
+
+            try:
+                r.get(full_url)
+                send_mail(
+                    'Account Creation',
+                    msg_plain,
+                    settings.EMAIL_HOST_USER,
+                    [request.POST.get('email')],
+                    html_message=msg_html,
+                )
+            except:
+                pass
             context['form'] = CompanyForm()
             context['form2'] = CustomUserForm()
         else:
