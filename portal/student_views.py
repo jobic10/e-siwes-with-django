@@ -84,8 +84,12 @@ def add_new_logbook(request):
                     messages.error(
                         request, "Your industrial-based supervisor has commented/signed on the report from this week. You can not modify this anymore. Kindly take a look at the comment")
                     return redirect(reverse('view_logbook'))
+    if week == 0:
+        d_week = week + 1
+    else:
+        d_week = week
     context = {'form': form,
-               'page_title': status + ' Weekly Report'}
+               'page_title': status + ' Weekly Report / (Week ' + str(d_week) + ' )'}
     if request.method == 'POST':
         if form.is_valid():
             if logbook_count < 1:  # Does not exist, first week
@@ -100,19 +104,13 @@ def add_new_logbook(request):
                 monday = date
                 student.start_date = monday
                 student.save()
-            else:
-                # Fetch the distance (in weeks) from the start_date to current date
-                student_start_date = student.start_date
-                days = abs(student_start_date - date).days
-                week = days // 7
-
-                print("The Difference = " + str(week))
             logbook = form.save(commit=False)
             logbook.student = student
             logbook.week = week
             # Figure out the Logbook Week
             logbook.save()
-            messages.success(request, "Successfully Added")
+            messages.success(request, "Week " +
+                             str(d_week) + " Successfully Added")
         else:
             messages.error(request, "Invalid Data Provided ")
     return render(request, 'admin_template/add_logbook_template.html', context)

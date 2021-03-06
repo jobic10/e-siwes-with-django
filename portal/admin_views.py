@@ -4,6 +4,9 @@ from .models import Company, Student, Logbook, FinalRemark, CustomUser
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 # Create your views here.
 
 
@@ -40,6 +43,19 @@ def add_student(request):
             student = form.save(commit=False)
             admin = admin.save(commit=False)
             admin.user_type = 3  # 3 Stands for Student
+
+            # Send mail
+            msg_html = render_to_string(
+                'email/email.html', {'msg': "Welcome, Please use this password to login your account <b>"+str(request.POST.get('password'))+"</b> "})
+            msg_plain = render_to_string(
+                'email/email.txt', {'msg': "Welcome, Please use this password to login your account <b>"+str(request.POST.get('password'))+"</b> "})
+            send_mail(
+                'Account Creation',
+                msg_plain,
+                settings.EMAIL_HOST_USER,
+                [request.POST.get('email')],
+                html_message=msg_html,
+            )
             admin.save()
             student.admin = admin
             student.save()
