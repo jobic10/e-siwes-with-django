@@ -70,6 +70,9 @@ class Student(models.Model):
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.fullname
+
 
 class FinalRemark(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
@@ -81,6 +84,8 @@ class Logbook(models.Model):
     week = models.IntegerField()
     report = RichTextUploadingField()
     remark = models.CharField(max_length=500, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 # @receiver(post_save, sender=CustomUser)
