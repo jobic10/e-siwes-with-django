@@ -34,7 +34,8 @@ urlpatterns = [
     path("company/home/", company_views.company_home, name='company_home'),
     path("company_view_profile", company_views.company_view_profile,
          name='company_view_profile'),
-
+    path("company_view_logbook", company_views.view_logbook,
+         name='company_view_logbook'),
 
 
 

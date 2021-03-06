@@ -10,7 +10,7 @@ from django.contrib.auth import update_session_auth_hash
 def student_home(request):
     student = get_object_or_404(Student, admin=request.user)
     context = {
-        'page_title': 'Dashboard'
+        'page_title': 'Dashboard',
 
     }
     return render(request, 'student_template/home_content.html', context)

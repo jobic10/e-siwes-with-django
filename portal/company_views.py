@@ -37,3 +37,7 @@ def company_view_profile(request):
             messages.error(
                 request, "Error Occurred While Updating Profile " + str(e))
     return render(request, "company_template/company_view_profile.html", context)
+
+
+def view_logbook(request):
+    pass
