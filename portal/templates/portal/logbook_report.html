@@ -8,7 +8,36 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-
+                <div class="card bg-gradient-dark mb-5">
+                    <div class="card-header">
+                      <h3 class="card-title">Personal Details</h3>
+                      <div class="card-tools">
+                        <!-- Buttons, labels, and many other things can be placed here! -->
+                        <!-- Here is a label for example -->
+                        <span class="badge badge-primary">{{ student.fullname }}</span>
+                      </div>
+                      <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" align='center'>
+                        <img class="text-center img img-fluid img-circle" height="300" width="300"
+                        src="/media/{{student.picture}}" alt="">
+                        <hr>
+                       <strong>Full Name</strong> :  {{ student.fullname }}
+                       <hr>
+                       <strong> Reg. No </strong>:  {{ student.regno }}
+                       <hr>
+                       <strong></strong>Start Date </strong>:  {{ student.start_date }}
+                       <hr>
+                       <strong></strong>Email </strong>:  {{ student.admin.email }}
+                       <hr>
+                       <strong></strong>Phone </strong>:  {{ student.admin.phone }}
+                       <hr>
+                       <strong>Company </strong>:  {{ student.company }}
+                    </div>
+                    <!-- /.card-body -->
+                    <!-- /.card-footer -->
+                  </div>
             {% for logbook in  logbooks %}
             <div class="card card-dark mb-5">
                 <div class="card-header">
