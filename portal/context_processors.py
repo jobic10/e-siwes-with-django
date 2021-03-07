@@ -17,11 +17,12 @@ def SITENAME(request):
                 date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
                 days = abs(start_date - date).days
                 week = days // 7
-
             count = Logbook.objects.filter(
                 student=request.user.student).count()
             if week == 0:
                 week = 1
+            if week > settings.NO_OF_WEEKS:
+                week = settings.NO_OF_WEEKS + 1
             context['WEEK'] = week
             context['COUNT'] = count
     return context
