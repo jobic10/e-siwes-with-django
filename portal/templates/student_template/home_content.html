@@ -1,4 +1,6 @@
 {% extends 'portal/base.html' %}
+{% load math %}
+
 {% load static %}
 {% block page_title %}{{page_title}}{% endblock page_title %}
 {% block content %}
@@ -15,7 +17,7 @@
                         <p>Week Number</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="ion ion-calendar"></i>
                     </div>
                     {# <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> #}
                 </div>
@@ -40,7 +42,14 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>{{WEEK|add:r}}<sup style="font-size: 20px">%</sup></h3>
+                        <h3>
+                          {% if WEEK == 1 %}
+                          -
+                        {% else %}
+                        {{WEEK|sub:percent_present}}
+                        {% endif %}
+                        
+                          <sup style="font-size: 20px">%</sup></h3>
 
                         <p>Weeks Absent</p>
                     </div>
@@ -55,12 +64,15 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>{{NO_OF_WEEKS}}</h3>
+                        <h3>
+                          {{NO_OF_WEEKS}}
+                          
+                        </h3>
 
-                        <p>Total Weeks</p>
+                        <p>Total (Max) Weeks</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="ion ion-android-calendar"></i>
                     </div>
                   
                 </div>
@@ -91,20 +103,27 @@
                             </div>
                           </div>
                           <div class="card-body">
+                            <hr>
+
                             {% if request.user.student.finalremark.remark %}
-                              
                             {{ request.user.student.finalremark.remark|safe }}
                             {% else %}
                               <h5 class="alert alert-info">No remarks yet!</h5>
                             {% endif %}
-                            
+                            <hr>
+                         
                           </div>
                           <!-- /.card-body -->
+                          <div class="card-footer">
+                            {% if WEEK > NO_OF_WEEKS %}
+                            You have completed your SIWES!
+                            {% else %}
+                            {{ NO_OF_WEEKS|sub:WEEK }}  Weeks Left!
+                            {% endif %}
+                          </div>
                         </div>
                         <!-- /.card -->
-            </div>
-                  
-           
+                          </div>
                         </div>
                         </div>  
                         </section>

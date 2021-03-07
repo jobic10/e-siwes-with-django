@@ -71,6 +71,10 @@ TEMPLATES = [
                 'portal.context_processors.SITENAME'
 
             ],
+            'libraries':{
+                'math': 'portal.tags.math',
+
+            }
         },
     },
 ]

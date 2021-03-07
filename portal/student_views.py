@@ -13,7 +13,6 @@ def student_home(request):
     context = {
         'page_title': 'Dashboard',
         'percent_present': count,
-        'r': -count,
         'pending': Logbook.objects.filter(student=student, remark=None).count()
     }
     return render(request, 'student_template/home_content.html', context)
