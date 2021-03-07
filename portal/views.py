@@ -66,5 +66,6 @@ def print_report(request, student_id):
         messages.error(request, "Something about you is not right!")
         return redirect(reverse('student_home'))
 
-    context = {'logbooks': logbooks, 'page_title': "Logbook"}
+    context = {'logbooks': logbooks,
+               'page_title': "Logbook", 'student': student}
     return render(request, "portal/logbook_report.html", context)
