@@ -6,7 +6,7 @@ import datetime
 def SITENAME(request):
     # return {'SITENAME': settings.APP_NAME, 'no_of_weeks': settings.NO_OF_WEEKS}
     context = {'SITENAME': settings.APP_NAME,
-               'NO_OF_WEEKS': settings.NO_OF_WEEKS}
+               'NO_OF_WEEKS': settings.NO_OF_WEEKS, 'DEVELOPER': settings.DEVELOPER, 'SUPERVISOR': settings.SUPERVISOR}
     if request.user.is_authenticated:
         if request.user.user_type == 3 or request.user.user_type == "3":  # Student
             start_date = request.user.student.start_date

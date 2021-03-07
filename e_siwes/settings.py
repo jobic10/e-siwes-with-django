@@ -187,3 +187,5 @@ SMS_TOKEN = os.environ.get('SMS_TOKEN')
 
 SMS_SENDER = 'E-SIWES'
 SMS_BASE_URL = 'https://smartsmssolutions.com/api/json.php?'
+DEVELOPER = "OWONUBI JOB SUNDAY - 17/52HA127"
+SUPERVISOR = "MR. H. A MOJEED"
