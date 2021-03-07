@@ -6,6 +6,8 @@ urlpatterns = [
     path("", views.login_page, name='login_page'),
     path("doLogin/", views.doLogin, name='user_login'),
     path("logout_user/", views.logout_user, name='user_logout'),
+    path("report/student/<int:student_id>/print/",
+         views.print_report, name="generate_report"),
 
     # * Admin
     path("admin/home/", admin_views.admin_home, name='admin_home'),
