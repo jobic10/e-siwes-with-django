@@ -27,6 +27,7 @@ urlpatterns = [
 
     path("company/delete/<int:company_id>",
          admin_views.delete_company, name='delete_company'),
+    path('logbook/view/all', admin_views.manage_logbook, name='manage_logbook'),
 
 
 

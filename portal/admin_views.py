@@ -162,6 +162,15 @@ def manage_company(request):
     return render(request, "admin_template/manage_company.html", context)
 
 
+def manage_logbook(request):
+    students = CustomUser.objects.filter(user_type=3)
+    context = {
+        'students': students,
+        'page_title': 'View Student\'s Logbook'
+    }
+    return render(request, "admin_template/manage_logbook.html", context)
+
+
 def add_company(request):
     form = CompanyForm(request.POST or None, request.FILES or None)
     admin = CustomUserForm(request.POST or None)
