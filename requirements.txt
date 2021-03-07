@@ -3,4 +3,3 @@ Pillow==8.0.1
 mysql-connector-python==8.0.23
 django-ckeditor==6.0.0
 requests==2.25.1
-django-renderpdf==3.0.1
