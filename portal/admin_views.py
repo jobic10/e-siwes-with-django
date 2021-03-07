@@ -17,7 +17,8 @@ def admin_home(request):
     context = {
         'page_title': "Administrative Dashboard",
         'total_students': total_student,
-        'total_company': total_company,
+        'total_companies': total_company,
+        'started': Student.objects.exclude(start_date=None).count()
 
     }
     return render(request, 'admin_template/home_content.html', context)
