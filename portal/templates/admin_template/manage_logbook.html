@@ -66,7 +66,7 @@
                                                 {% csrf_token %}
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <textarea name="remark" required class="form-control">{% if student.student.logbook.remark %}{{ student.student.logbook.remark }}{% endif %}</textarea>
+                                                        <textarea name="remark" required class="form-control">{% if student.student.finalremark.remark %}{{ student.student.finalremark.remark }}{% endif %}</textarea>
                                                         <input type="hidden" name="student_id"  value="{{ student.student.id }}">
                                                     </div>
                                                 </div>
