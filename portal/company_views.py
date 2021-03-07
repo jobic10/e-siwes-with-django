@@ -9,9 +9,15 @@ from django.contrib.auth import update_session_auth_hash
 def company_home(request):
     me = get_object_or_404(Company, admin=request.user)
     total_students = Student.objects.filter(company=me).count()
+    pending_remarks = Logbook.objects.filter(
+        student__company=me, remark=None).count()
+    approved_remarks = Logbook.objects.exclude(
+        student__company=me, remark=None).count()
     context = {
         'page_title': 'Industrial-Based (Company) Dashboard',
         'total_students': total_students,
+        'approved_remarks': approved_remarks,
+        'pending_remarks': pending_remarks
     }
     return render(request, 'company_template/home_content.html', context)
 
