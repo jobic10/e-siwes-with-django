@@ -25,9 +25,9 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>{{total_attendance}}</h3>
+                        <h3>{{approved_remarks}}</h3>
 
-                        <p>Total Attendance Taken</p>
+                        <p>Approved Remarks</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -40,9 +40,9 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>{{total_leave}}</h3>
+                        <h3>{{pending_remarks}}</h3>
 
-                        <p>Total Leave Applied</p>
+                        <p>Pending Remarks</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -55,9 +55,9 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>{{total_subject}}</h3>
+                        <h3>{{NO_OF_WEEKS}}</h3>
 
-                        <p>Total Subjects</p>
+                        <p>Total Weeks Of SIWES</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -68,49 +68,7 @@
             <!-- ./col -->
         </div>
         <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-            <div class="col-md-6">
-                <!-- LINE CHART -->
-                <div class="card card-secondary">
-                  <div class="card-header">
-                    <h3 class="card-title">{{page_title}}</h3>
-    
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="chart">
-                      <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                    </div>
-                  </div></div>
-                  <!-- /.card-body -->
-                </div>
-                <div class="col-md-6">
-                    <div class="card card-secondary">
-              <div class="card-header">
-                <h3 class="card-title">{{page_title}}</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-                </div>
-            <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
+     
     </div><!-- /.container-fluid -->
 </section>
 {% endblock content %}
