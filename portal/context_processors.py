@@ -1,5 +1,5 @@
 from django.conf import settings
-from .models import Student
+from .models import Student, Logbook
 import datetime
 
 
@@ -14,10 +14,13 @@ def SITENAME(request):
             date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
             days = abs(start_date - date).days
             week = days // 7
+            count = Logbook.objects.filter(
+                student=request.user.student).count()
             if start_date is None:
                 week = 0
             else:
                 if week == 0:
                     week = 1
             context['WEEK'] = week
+            context['COUNT'] = count
     return context
