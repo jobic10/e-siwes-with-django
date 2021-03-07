@@ -44,7 +44,7 @@ And if you like this project, then ADD a STAR ⭐️  to this project 👆
 <img src="ss/4.png"/>
 <img src="ss/5.png"/>
 
-| Admin| Staff| Student |
+| Admin| Company| Student |
 |------|-------|---------|
 |<img src="ss/admin5.png" width="400">|<img src="ss/company1.png" width="400">|<img src="ss/student1.png" width="400">|
 |<img src="ss/admin2.png" width="400">|<img src="ss/company2.png" width="400">|<img src="ss/student2.png" width="400">|
@@ -188,7 +188,7 @@ Then Add Email and Password
 Email: admin@admin.com
 Password: admin
 
-*For Staff*
+*For Company*
 Email: company@company.com
 Password: company
 
