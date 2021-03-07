@@ -163,6 +163,16 @@ def manage_company(request):
 
 
 def manage_logbook(request):
+    if request.method == 'POST':
+        student_id = request.POST.get('student_id', 0)
+        student = get_object_or_404(Student, id=student_id)
+        remark = request.POST.get('remark', None)
+        if remark is None:
+            messages.error(request, "Please fill in the remark!")
+        else:
+            obj, created = FinalRemark.objects.update_or_create(
+                student=student, defaults={'remark': remark})
+            messages.success(request, "Action Saved")
     students = CustomUser.objects.filter(user_type=3)
     context = {
         'students': students,

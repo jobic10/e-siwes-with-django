@@ -50,9 +50,37 @@
                                     </td>
                                     
                                     <td>
-                                        <a href="{% url 'generate_report' student.student.id %}" class="btn btn-primary">View Logbook</a>
-                                        <a href="{% url 'generate_report' student.student.id %}" class="btn btn-primary">Add Final Remark</a>
+                                        <a href="{% url 'generate_report' student.student.id %}" class="float-left btn btn-primary">View Logbook</a>
+                                        <button type="button" class="float-right btn btn-primary" data-toggle="modal" data-target="#me_{{ student.student.id }}">Remark</button>
                                     </td>
+                                    <div class="modal fade" id="me_{{ student.student.id }}">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h4 class="modal-title">{{ student.student.fullname }}'s Remarks</h4>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <textarea name="remark" required class="form-control">{% if student.student.logbook.remark %}{{ student.student.logbook.remark }}{% endif %}</textarea>
+                                                        <input type="hidden" name="student_id"  value="{{ student.student.id }}">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                          </div>
+                                          <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                      </div>
+                                
                                 </tr>
                                 {% endfor %}
                             </tbody>
