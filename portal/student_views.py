@@ -4,6 +4,7 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.conf import settings
 # Create your views here.
 
 
@@ -60,7 +61,12 @@ def add_new_logbook(request):
         days = abs(student_start_date - date).days
         week = days // 7
 
-        # First, we check if the week difference is exactly this week
+        # Check if it Student has reached the MAX_WEEK
+        if week > settings.NO_OF_WEEKS:
+            messages.error(request, "Sorry, you have completed your SIWES")
+            return redirect(reverse('student_home'))
+
+        # Now, we check if the week difference is exactly this week
         # If it is, show the recent logbook for update...
         # If and only If it has not been commented on by the supervisor
         if logbook_count == 1:
