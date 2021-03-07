@@ -9,7 +9,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
         user = request.user  # Who is the current user ?
         if user.is_authenticated:
             if user.user_type == '1':  # Is it the Admin
-                if modulename == 'portal.student_views':
+                if modulename == 'portal.student_views' or modulename == 'portal.company_views':
                     return redirect(reverse('admin_home'))
             elif user.user_type == '2':  # Company :-/ ?
                 if modulename == 'portal.student_views' or modulename == 'portal.admin_views':
