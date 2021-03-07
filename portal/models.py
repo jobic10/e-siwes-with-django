@@ -59,7 +59,7 @@ class Company(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + " - " + self.address[:20]
+        return self.name + " - " + self.address
 
 
 class Student(models.Model):

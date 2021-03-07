@@ -9,9 +9,12 @@ from django.contrib.auth import update_session_auth_hash
 
 def student_home(request):
     student = get_object_or_404(Student, admin=request.user)
+    count = Logbook.objects.filter(student=student).count()
     context = {
         'page_title': 'Dashboard',
-
+        'percent_present': count,
+        'r': -count,
+        'pending': Logbook.objects.filter(student=student, remark=None).count()
     }
     return render(request, 'student_template/home_content.html', context)
 
