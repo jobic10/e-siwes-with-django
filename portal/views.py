@@ -68,19 +68,3 @@ def print_report(request, student_id):
 
     context = {'logbooks': logbooks, 'page_title': "Logbook"}
     return render(request, "portal/logbook_report.html", context)
-
-    def dispatch(self, request, *args, **kwargs):
-        user = request.user
-        student_id = self.kwargs.get('student_id', None)
-        student = get_object_or_404(Student, id=student_id)
-        if user.user_type == 1:  # Admin
-            pass
-        elif user.user_type == 2:  # Company
-            if user.company != student.company:
-                messages.error(request, "Sorry, access to this is denied")
-                return redirect(reverse('company_home'))
-        else:  # Student
-            if user.student != student:
-                messages.error(request, "You do not have access to this!")
-                return redirect(reverse('student_home'))
-        return super(GeneratePDFView, self).dispatch(request, *args, **kwargs,)
