@@ -77,6 +77,8 @@ class Student(models.Model):
 class FinalRemark(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
     remark = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Logbook(models.Model):

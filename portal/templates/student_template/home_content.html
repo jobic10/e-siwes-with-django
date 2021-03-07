@@ -106,7 +106,7 @@
                             <hr>
 
                             {% if request.user.student.finalremark.remark %}
-                            {{ request.user.student.finalremark.remark|safe }}
+                            {{ request.user.student.finalremark.remark }} - {{ request.user.student.finalremark.created_at }}
                             {% else %}
                               <h5 class="alert alert-info">No remarks yet!</h5>
                             {% endif %}
