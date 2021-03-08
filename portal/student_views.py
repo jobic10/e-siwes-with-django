@@ -76,8 +76,8 @@ def add_new_logbook(request):
                 status = 'Update'
             else:
                 messages.success(
-                    request, "Your industrial-based supervisor has commented/signed on this week's report. You can not modify this anymore.")
-                return redirect(reverse('view_logbook'))
+                    request, "Your industrial-based supervisor has commented/signed on the report from this week. You can not modify this anymore.")
+                return redirect(reverse('my_logbook'))
         else:
             # Check if week is not this week, if not show new form
             instance = Logbook.objects.filter(
