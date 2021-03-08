@@ -120,7 +120,7 @@ $  source bin/activate
 
 **3. Clone this project**
 ```
-$  git clone https://github.com/jobic10/student-management-using-django.git
+$  git clone https://github.com/jobic10/e-siwes-with-django.git
 ```
 
 Then, Enter the project
