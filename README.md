@@ -11,8 +11,6 @@ Feel free to make changes based on your requirements.
 [Front-end Template](http://adminlte.io "Admin LTE.io")
 
 
-
-
 And if you like this project, then ADD a STAR ⭐️  to this project 👆
 
 
