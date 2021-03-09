@@ -48,7 +48,7 @@ def add_student(request):
 
             # Send mail
             data = {'msg': "Welcome, Please use this password to login your account <b>" +
-                    str(request.POST.get('password'))+"</b> "}
+                    str(request.POST.get('password'))+"</b> ", 'SITENAME': settings.APP_NAME}
             msg_html = render_to_string(
                 'email/email.html', data)
             msg_plain = render_to_string(
