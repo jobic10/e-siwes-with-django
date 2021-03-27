@@ -205,9 +205,6 @@ def add_company(request):
             message = "Hello There! Your SIWES account has been created. Further details are in your mail."
             to = request.POST.get('phone')
 
-            full_url = settings.SMS_BASE_URL + 'message=' + message + '&to=' + to + \
-                '&sender=' + settings.SMS_SENDER + '&type=0&routing=3&token=' + settings.SMS_TOKEN
-
             try:
                 r.get(full_url)
                 send_mail(
