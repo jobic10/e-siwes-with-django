@@ -206,7 +206,6 @@ def add_company(request):
             to = request.POST.get('phone')
 
             try:
-                r.get(full_url)
                 send_mail(
                     'Account Creation',
                     msg_plain,
