@@ -187,5 +187,5 @@ SMS_TOKEN = os.environ.get('SMS_TOKEN')
 
 SMS_SENDER = 'E-SIWES'
 SMS_BASE_URL = 'https://smartsmssolutions.com/api/json.php?'
-DEVELOPER = "MUHAMMED FAROUK AJIBOLA - 16/52HA055"
-SUPERVISOR = "DR. AWOTUNDE"
+DEVELOPER = "Shaibu Abdulfatai Bolaji - 16/30GR049"
+SUPERVISOR = "Dr. I. D. Oladipo"
