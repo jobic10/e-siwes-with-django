@@ -7,6 +7,10 @@ from .models import Student, Logbook
 # Create your views here.
 
 
+def homepage(request):
+    return render(request, "portal/home.html")
+
+
 def login_page(request):
     if request.user.is_authenticated:
         if request.user.user_type == '1':

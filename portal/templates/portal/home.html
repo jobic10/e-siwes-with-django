@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>E-SIWES</title>
+
+  <!-- Favicons -->
+  <link href="{% static 'portal/assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'portal/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'portal/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'portal/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'portal/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'portal/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'portal/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'portal/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'portal/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'portal/assets/css/style.css' %}" rel="stylesheet">
+  
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="#"><span>E-SIWES</span></a></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'login_page' %}">Sign In</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+    
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="order-2 pt-5 col-lg-7 pt-lg-0 order-lg-1 d-flex align-items-center">
+          <div data-aos="zoom-out">
+            <h1>STUDENTS INDUSTRIAL WORK EXPERIENCE SCHEME (SIWES)</h1>
+            <h2>An Electronic SIWES portal!</h2>
+            <div class="text-center text-lg-start">
+              <a href="{% url 'login_page' %}" class="btn-get-started scrollto">Get Started</a>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 col-lg-4 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
+          <img src="{% static 'portal/assets/img/itf.png' %}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+      
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch" data-aos="fade-right">
+        
+          </div>
+
+          <div class="py-5 col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5" data-aos="fade-right">
+            <h3>About Us?</h3>
+            <p>The Student Industrial Work Experience Scheme (SIWES), also known as Industrial Training is a compulsory skills training programme designed to expose and prepare students of Nigerian Universities, Polytechnics, Colleges of Education, Colleges of Technology and Colleges of Agriculture, for the industrial work situation they’re likely to meet after graduation.</p>
+
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="#about">Objectives #1</a></h4>
+              <p class="description"> Provide avenues for students to acquire industrial skills and experience during their course of study.</p>
+            </div>
+                <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="#about">Objectives #2</a></h4>
+              <p class="description">Prepare students for industrial work situation they are likely to meet after graduation.</p>
+            </div>
+                <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="#about">Objectives #3</a></h4>
+              <p class="description">Expose students to work methods and techniques in handling equipment and machineries that may not be available in the university;</p>
+            </div>
+<div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="#about">Objectives #4</a></h4>
+              <p class="description">Provide students with the opportunities to apply their educational knowledge in real work situations, thereby bridging the gap between theory and practice.</p>
+            </div>
+<div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="#about">Objectives #5</a></h4>
+              <p class="description">To make the transition from the schooling to world of work easier through enhancing students’ contact for later job placement.</p>
+            </div>
+
+            
+
+          </div>
+          <div class="col-12">
+           
+            <h3>Brief History of SIWES</h3>
+
+<p>SIWES started in 1974 with 748 students from 11 institutions of higher learning participating. By 1978, participation on the Scheme increased to about 5000 students from 32 institutions. The ITF withdrew from the management of the Scheme in 1979 owing to problems of organizational logistics and increased financial burden associated with the rapid expansion of SIWES. Consequently, the Federal Government funded the Scheme through the National Universities Commission (NUC) and the National Board for Technical Education (NBTE) who managed the SIWES for five years (1979-1984). The supervising agencies – NUC and NBTE, operated the Scheme in conjunction with their respective institutions during the period. The industrial Training Fund (ITF) was thereafter directed by the Federal Government to take charge and resume the responsibility of managing the Scheme in collaboration with the supervising/regulatory agencies. That is, NUC, NBTE and the National Commission for Colleges of Education (NCCE).</p>
+          </div>
+        </div>
+
+
+      </div>
+    </section><!-- End About Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>E-SIWES</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+E-SIWES
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'portal/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'portal/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'portal/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'portal/assets/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'portal/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'portal/assets/js/main.js' %}"></script>
+</body>
+
+</html>
